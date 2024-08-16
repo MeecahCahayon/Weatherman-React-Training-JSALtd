@@ -26,9 +26,9 @@ export const reducer = reducerWithInitialState(INITIAL_STATE)
 	}))
 	.case(actions.fetchLocationsAction.failed, (state, payload): StoreState => ({
 		// set loading to false and store error
-		...state, loading: false, error: payload.error,
+		...state, loading: false, searchResults: [], error: payload.error,
 	}))
 	.case(actions.fetchLocationsAction.done, (state, payload): StoreState => ({
 		// set loading to false and store results
-		...state, loading: false, searchResults: payload.result,
+		...state, loading: false, searchResults: payload.result, error: undefined,
 	}))

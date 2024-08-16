@@ -4,7 +4,9 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { RootStoreState } from '../../root'
-import { Location } from '../../api/types'
+import { Location, Forecast } from '../../api/types'
+
+import { fetchForcastAction } from '../actions'
 
 const DetailsScreen = (): JSX.Element | null => {
 
@@ -19,6 +21,9 @@ const DetailsScreen = (): JSX.Element | null => {
 	 */
 
 	const location = useSelector<RootStoreState, Location | undefined>(state => state.details.selectedLocation)
+	const loading = useSelector<RootStoreState, boolean>(state => state.details.loading)
+	const error = useSelector<RootStoreState, Error | undefined>(state => state.details.error)
+	const results = useSelector<RootStoreState, Forecast[] | undefined>(state => state.details.forecasts)
 
 	/**
 	 * Effects/Subscriptions
@@ -26,7 +31,8 @@ const DetailsScreen = (): JSX.Element | null => {
 
 	useEffect(() => {
 		if (location) {
-			// TODO dispatch action to load forecasts for given location id
+			// TODO (DONE) Dispatch action to load forecasts for given location id
+			dispatch(fetchForcastAction.started(location.id))
 		}
 	}, [location, dispatch])
 

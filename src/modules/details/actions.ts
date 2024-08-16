@@ -1,8 +1,9 @@
 import actionCreatorFactory, { Action } from 'typescript-fsa'
-import { FetchForecastResponse } from '../api/types'
+import { Forecast } from '../api/types'
 
 const actionCreator = actionCreatorFactory('Details')
 
 // location id is the payload
 export type FetchForecastPayload = Action<number>
-// TODO create action to fetch forecast for a location id
+// TODO  (DONE) Create action to fetch forecast for a location id
+export const fetchForcastAction = actionCreator.async<number, Forecast[], Error>('FETCH_FORCASTS')
