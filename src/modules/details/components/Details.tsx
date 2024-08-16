@@ -8,6 +8,8 @@ import { Location, Forecast } from '../../api/types'
 
 import { fetchForcastAction } from '../actions'
 
+import CurrentWeatherTemperatureSection from './CurrentWeatherTemperatureSection'
+
 const DetailsScreen = (): JSX.Element | null => {
 
 	/**
@@ -49,7 +51,10 @@ const DetailsScreen = (): JSX.Element | null => {
 			<h2>Weather Details:</h2>
 			<h3>{location.name}, {location.sys.country}</h3>
 
-			{/* TODO render current temperatures */}
+			{/* TODO (Done) Render current temperatures */}
+			{location && location.main && (
+				<CurrentWeatherTemperatureSection currentWeather={location.main} />
+			)}
 
 			{/* TODO render forecasts - with loading/error state */}
 		</div>
