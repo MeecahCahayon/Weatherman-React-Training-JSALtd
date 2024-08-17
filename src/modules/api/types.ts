@@ -34,7 +34,14 @@ export interface Forecast {
     weather: WeatherDescription[]
 }
 
+export interface ForecastDisplay {
+    date: string
+    averageTemperature?: number
+    weather?: WeatherDescription
+}
+
 export interface WeatherDescription {
+    id: number
     description: string
     icon: string
 }
