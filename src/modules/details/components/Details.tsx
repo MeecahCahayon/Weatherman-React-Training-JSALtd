@@ -11,6 +11,7 @@ import { fetchForcastAction } from '../actions'
 
 import CurrentWeatherTemperatureSection from './CurrentWeatherTemperatureSection'
 import ForcastWeatherCard from './ForcastWeatherCard'
+import { fDate } from '../../../utils/formatTime'
 
 const DetailsScreen = (): JSX.Element | null => {
 
@@ -77,7 +78,7 @@ const DetailsScreen = (): JSX.Element | null => {
 			)
 	
 			return {
-				date,
+				date: fDate(date, 'dddd'),
 				averageTemperature: totalTemp / forecasts.length,
 				weather: mostFrequentWeather,
 			}
