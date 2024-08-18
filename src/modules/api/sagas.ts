@@ -1,9 +1,9 @@
 import { SagaIterator } from 'redux-saga'
 import { takeEvery, call, put } from 'redux-saga/effects'
-import { fetchLocationsAction, FetchLocationsPayload } from '../search/actions'
+import { fetchLocationsAction, FetchLocationsPayload } from '../sections/weatherSearch/actions'
 import { fetchLocations, fetchForecast } from '../api/functions'
 import { Forecast, Location } from '../api/types'
-import { fetchForcastAction, FetchForecastPayload } from '../details/actions'
+import { fetchForcastAction, FetchForecastPayload } from '../sections/weatherDetail/actions'
 
 function* handleFetchLocations(action: FetchLocationsPayload): SagaIterator {
 	const query: string = action.payload
@@ -18,7 +18,6 @@ function* handleFetchLocations(action: FetchLocationsPayload): SagaIterator {
 }
 
 function* handleFetchForecast(action: FetchForecastPayload): SagaIterator {
-	// TODO implement saga to fetch forecast
 	const query: number = action.payload
 	try {
 		const result: Forecast[] | undefined = yield call(fetchForecast, query)

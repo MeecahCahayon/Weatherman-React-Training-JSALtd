@@ -10,6 +10,6 @@ import { lazy } from 'react'
  * @see [Route-based code splitting](https://reactjs.org/docs/code-splitting.html#route-based-code-splitting)
  */
 export default {
-	Search: lazy(() => import('../search/components/Search')),
-	Details: lazy(() => import('../details/components/Details')),
+	Search: lazy(() => import('../screens/weatherSearch/Search')),
+	Details: lazy(() => import('../screens/weatherDetail/Details')),
 }

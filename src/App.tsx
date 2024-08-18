@@ -7,17 +7,27 @@ import { Paths } from './modules/navigation/types'
 import LazySwitch from './modules/navigation/components/LazySwitch'
 import Routes from './modules/navigation/routes'
 import NavigateSetter from './modules/navigation/components/NavigateSetter'
+import { StyledEngineProvider, ThemeProvider } from '@mui/material'
 
-const App = (): JSX.Element => (
-	<Provider store={store}>
-		<BrowserRouter>
-			<NavigateSetter />
-			<LazySwitch>
-				<Route path={Paths.HOME} element={<Routes.Search />} />
-				<Route path={Paths.DETAILS} element={<Routes.Details />} />
-			</LazySwitch>
-		</BrowserRouter>
-	</Provider>
-)
+const App = (): JSX.Element => {
+
+	const theme = {}
+
+	return (
+		<Provider store={store}>
+			<BrowserRouter>
+				<StyledEngineProvider>
+					<ThemeProvider theme={theme}>
+						<NavigateSetter />
+						<LazySwitch>
+							<Route path={Paths.HOME} element={<Routes.Search />} />
+							<Route path={Paths.DETAILS} element={<Routes.Details />} />
+						</LazySwitch>
+					</ThemeProvider>
+				</StyledEngineProvider>
+			</BrowserRouter>
+		</Provider>
+	)
+}
 
 export default App

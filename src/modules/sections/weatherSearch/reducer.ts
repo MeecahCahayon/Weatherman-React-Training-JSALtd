@@ -1,34 +1,27 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import * as actions from './actions'
-import { Location } from '../api/types'
+import { Location } from '../../api/types'
 
 export interface StoreState {
 	readonly searchResults: Location[]
+	readonly initial: boolean
 	readonly loading: boolean
 	readonly error?: Error
 }
 
-/**
- * The initial store state for this module.
- */
 const INITIAL_STATE: StoreState = {
 	searchResults: [],
+	initial: true,
 	loading: false,
 }
 
-/**
- * Reducer function for this module.
- */
 export const reducer = reducerWithInitialState(INITIAL_STATE)
 	.case(actions.fetchLocationsAction.started, (state): StoreState => ({
-		// set loading to true and clear existing results and error
-		...state, loading: true, searchResults: [], error: undefined,
+		...state, loading: true, initial: false, searchResults: [], error: undefined,
 	}))
 	.case(actions.fetchLocationsAction.failed, (state, payload): StoreState => ({
-		// set loading to false and store error
-		...state, loading: false, searchResults: [], error: payload.error,
+		...state, loading: false, initial: false, searchResults: [], error: payload.error,
 	}))
 	.case(actions.fetchLocationsAction.done, (state, payload): StoreState => ({
-		// set loading to false and store results
-		...state, loading: false, searchResults: payload.result, error: undefined,
+		...state, loading: false, initial: false, searchResults: payload.result, error: undefined,
 	}))

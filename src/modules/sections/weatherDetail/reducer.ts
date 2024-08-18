@@ -1,6 +1,6 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
-import { Location, Forecast } from '../api/types'
-import * as searchActions from '../search/actions'
+import { Location, Forecast } from '../../api/types'
+import * as searchActions from '../weatherSearch/actions'
 import * as detailsActions from './actions'
 
 export interface StoreState {
@@ -11,18 +11,11 @@ export interface StoreState {
 	readonly error?: Error
 }
 
-/**
- * The initial store state for this module.
- */
 const INITIAL_STATE: StoreState = {
 	loading: false,
 }
 
-/**
- * Reducer function for this module.
- */
 export const reducer = reducerWithInitialState(INITIAL_STATE)
-	// set selected location
 	.case(searchActions.locationSelectedAction, (state, payload): StoreState => ({
 		...state, selectedLocation: payload,
 	}))

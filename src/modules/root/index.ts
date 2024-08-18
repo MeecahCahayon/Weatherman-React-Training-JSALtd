@@ -2,8 +2,8 @@ import { createStore, combineReducers, compose, applyMiddleware, Middleware } fr
 import createSagaMiddleware from 'redux-saga'
 
 /* Import reducers from our modules */
-import * as search from '../search/reducer'
-import * as details from '../details/reducer'
+import * as search from '../sections/weatherSearch/reducer'
+import * as details from '../sections/weatherDetail/reducer'
 import rootSaga from './sagas'
 import loggerMiddleware from '../../utils/logger'
 

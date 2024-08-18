@@ -2,9 +2,10 @@ import '../styles/Details.scss'
 
 import React from 'react'
 
-import { Weather } from '../../api/types'
+import { Weather } from '../../../api/types'
 
-import CurrentWeatherTemperatureCard from './CurrentWeatherTemperatureCard'
+import { CurrentWeatherTemperatureCard } from '.'
+import { Stack } from '@mui/material'
 
 type Props = {
 	currentWeather: Weather
@@ -12,7 +13,7 @@ type Props = {
 
 const CurrentWeatherTemperatureSection = ({ currentWeather }: Props): JSX.Element => {
 
-	const { temp, temp_max, temp_min, humidity, pressure } = currentWeather
+	const { temp_max, temp_min, humidity, pressure } = currentWeather
 
 	const temperatureCards = [
 		{ label: 'Temp Min', value: temp_min, valueString: `${temp_min}°C` },
@@ -22,15 +23,11 @@ const CurrentWeatherTemperatureSection = ({ currentWeather }: Props): JSX.Elemen
 	].filter(({ value }) => value)
 
 	return (
-		<>
-			{temp && <h3>{temp}°C</h3>}
-
-			<div className='currentWeatherTemperatureCards'>
-				{temperatureCards.map(({ label, valueString }) => (
-					<CurrentWeatherTemperatureCard key={label} label={label} value={valueString} />
-				))}
-			</div>
-		</>
+		<Stack flexDirection={'row'} gap={10}>
+			{temperatureCards.map(({ label, valueString }) => (
+				<CurrentWeatherTemperatureCard key={label} label={label} value={valueString} />
+			))}
+		</Stack>
 	)
 }
 

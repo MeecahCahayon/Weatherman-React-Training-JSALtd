@@ -18,3 +18,7 @@ export function setNavigateFunction(func: NavigateFunction): void {
 export const navigateToDetails = (): void => {
 	navigate(Paths.DETAILS)
 }
+
+export const navigateToSearch = (): void => {
+	navigate(Paths.HOME)
+}
